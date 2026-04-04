@@ -1,0 +1,6 @@
+{
+    "name": "python dev container",
+    "dockerComposeFile": "${localWorkspaceFolder}/docker-compose.yml",
+    "service": "main",
+    "workspaceFolder": "/home/vscode/ai"
+}
