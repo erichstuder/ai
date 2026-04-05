@@ -6,7 +6,9 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --no-cache-dir \
     jupyter==1.1.1 \
     pytest==9.0.2 \
-    nbstripout==0.9.1
+    nbstripout==0.9.1 \
+    numpy==2.4.4 \
+    matplotlib==3.10.8
 
 # To clean notebook content before commit the .gittattributes has been created with:
 # nbstripout --install --attributes .gitattributes
