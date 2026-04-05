@@ -1,8 +1,8 @@
 from .weight_initializer import IWeightInitializer
-import random
+import numpy as np
 
 
 class RandomInitializer(IWeightInitializer):
-    def init(self):
-        random_number_generator = random.Random(0) # Use a fixed seed for reproducibility
-        return random_number_generator.uniform(-0.5, 0.5)
+    def init(self, input_size, output_size):
+        np.random.seed(0) # Use a fixed seed for reproducibility
+        return np.random.uniform(low=-0.5, high=0.5, size=(output_size, input_size))

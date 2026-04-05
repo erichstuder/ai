@@ -1,5 +1,6 @@
 from .WeightInitializer.weight_initializer import IWeightInitializer
 from .ActivationFunction.activation_function import IActivationFunction
+import numpy as np
 
 
 # Note:
@@ -9,15 +10,25 @@ class NeuralNetwork:
                  neurons_per_layer,
                  weight_initializer: IWeightInitializer,
                  activation_function: IActivationFunction):
-        # self.neurons_per_layer = neurons_per_layer
-        self.weights = weight_initializer.init()
+        self.neurons_per_layer = neurons_per_layer
+
+        self.layer_weights = []
+        for i in range(len(neurons_per_layer) - 1):
+            input_size = neurons_per_layer[i]
+            output_size = neurons_per_layer[i+1]
+            self.layer_weights.append(weight_initializer.init(input_size, output_size))
+        
         self.activation_function = activation_function
     
     def query(self, inputs):
-        return [self.activation_function.apply(self.weights * inputs[0])]
-
-    # def train(self):
-    #     print("Train does nothing yet, but hello anyway!")
-    #     pass
-
-
+        outputs = np.array(inputs)
+        for weights in self.layer_weights:
+            outputs = self.activation_function.apply(np.dot(weights, outputs))
+        return outputs
+    
+    def pretty_print_weights(self):
+        np.set_printoptions(precision=3, suppress=True)
+        for idx, w in enumerate(self.layer_weights):
+            print(f"Layer {idx} weights (shape {np.array(w).shape}):")
+            print(np.array(w))
+            print("-"*40)
