@@ -7,7 +7,12 @@ if __name__ == "__main__":
         {
             'flag': '-t',
             'name': '--test',
-            'help': 'Run tests.'
+            'help': 'Run unit tests.'
+        },
+        {
+            'flag': '-n',
+            'name': '--test_notebook',
+            'help': 'Run notebook to see if it works.'
         }
     ]
 
@@ -15,6 +20,8 @@ if __name__ == "__main__":
 
     if ex.arguments.test:
         commands = 'pytest'
+    elif ex.arguments.test_notebook:
+        commands = 'jupyter nbconvert --to notebook --execute notebook.ipynb --output-dir /tmp'
     else:
         commands = None
 
