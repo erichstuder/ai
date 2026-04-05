@@ -1,0 +1,2 @@
+from .weight_initializer import IWeightInitializer
+from .random_initializer import RandomInitializer
