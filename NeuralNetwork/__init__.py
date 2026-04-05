@@ -4,4 +4,4 @@ from .neural_network import NeuralNetwork
 from .WeightInitializer import RandomInitializer
 
 # from .ActivationFunction import IActivationFunction
-from .ActivationFunction import Sigmoid
+from .ActivationFunction import StdLogisticFunction

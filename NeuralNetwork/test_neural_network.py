@@ -1,14 +1,14 @@
 import pytest
 from .neural_network import NeuralNetwork
 from .WeightInitializer.random_initializer import RandomInitializer
-from .ActivationFunction.sigmoid import Sigmoid
+from .ActivationFunction.std_logistic_function import StdLogisticFunction
 
 
 def test_one_neuron():
     net = NeuralNetwork(
         neurons_per_layer=[1],
         weight_initializer=RandomInitializer(),
-        activation_function=Sigmoid()
+        activation_function=StdLogisticFunction()
     )
 
     # Note:

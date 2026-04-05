@@ -1,2 +1,2 @@
 from .activation_function import IActivationFunction
-from .sigmoid import Sigmoid
+from .std_logistic_function import StdLogisticFunction
