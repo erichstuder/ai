@@ -1,5 +1,5 @@
-from .WeightInitializer.weight_initializer import IWeightInitializer
-from .ActivationFunction.activation_function import IActivationFunction
+from .WeightInitializer.weight_initializer import WeightInitializer
+from .ActivationFunction.activation_function import ActivationFunction
 import numpy as np
 
 
@@ -8,8 +8,8 @@ import numpy as np
 class NeuralNetwork:
     def __init__(self,
                  neurons_per_layer,
-                 weight_initializer: IWeightInitializer,
-                 activation_function: IActivationFunction):
+                 weight_initializer: WeightInitializer,
+                 activation_function: ActivationFunction):
         self.neurons_per_layer = neurons_per_layer
 
         self.layer_weights = []

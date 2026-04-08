@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class IActivationFunction(ABC):
+class ActivationFunction(ABC):
     @abstractmethod
     def apply(self, x):
         pass

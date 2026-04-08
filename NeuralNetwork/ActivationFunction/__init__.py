@@ -1,2 +1,2 @@
-from .activation_function import IActivationFunction
+from .activation_function import ActivationFunction
 from .std_logistic_function import StdLogisticFunction

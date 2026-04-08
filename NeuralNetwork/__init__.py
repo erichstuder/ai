@@ -1,7 +1,7 @@
 from .neural_network import NeuralNetwork
 
-# from .WeightInitializer import IWeightInitializer
+# from .WeightInitializer import WeightInitializer
 from .WeightInitializer import RandomInitializer
 
-# from .ActivationFunction import IActivationFunction
+# from .ActivationFunction import ActivationFunction
 from .ActivationFunction import StdLogisticFunction

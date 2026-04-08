@@ -3,9 +3,9 @@ from unittest.mock import patch, MagicMock
 import numpy as np
 
 from .neural_network import NeuralNetwork
-from .WeightInitializer.weight_initializer import IWeightInitializer
+from .WeightInitializer.weight_initializer import WeightInitializer
 from .WeightInitializer.random_initializer import RandomInitializer
-from .ActivationFunction.activation_function import IActivationFunction
+from .ActivationFunction.activation_function import ActivationFunction
 from .ActivationFunction.std_logistic_function import StdLogisticFunction
 
 
@@ -29,10 +29,10 @@ def test_one_neuron():
 
 
 def test_1_2_1_architecture(mocker):
-    weight_initializer_mock = mocker.Mock(IWeightInitializer)
+    weight_initializer_mock = mocker.Mock(WeightInitializer)
     weight_initializer_mock.init.side_effect = lambda input_size, output_size: np.ones((output_size, input_size))
 
-    activation_function_mock = mocker.Mock(IActivationFunction)
+    activation_function_mock = mocker.Mock(ActivationFunction)
     activation_function_mock.apply.side_effect = lambda x: x
 
     net = NeuralNetwork(
