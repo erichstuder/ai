@@ -3,8 +3,6 @@ from .ActivationFunction.activation_function import ActivationFunction
 import numpy as np
 
 
-# Note:
-# - The special input layer distributing the input data is left out of the neurons_per_layer list. It is handled separately in the code.
 class NeuralNetwork:
     def __init__(self,
                  neurons_per_layer,
