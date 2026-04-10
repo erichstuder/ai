@@ -28,9 +28,9 @@ def test_one_neuron():
         assert outputs[0] == pytest.approx(expected_output, abs=1e-3)
 
 
-def test_1_2_1_architecture(mocker):
+def test_1_2_1_architecture_weights(mocker):
     weight_initializer_mock = mocker.Mock(WeightInitializer)
-    weight_initializer_mock.init.side_effect = lambda input_size, output_size: np.ones((output_size, input_size))
+    weight_initializer_mock.init.side_effect = lambda input_size, output_size: (np.ones((output_size, input_size)), (np.zeros(output_size)))
 
     activation_function_mock = mocker.Mock(ActivationFunction)
     activation_function_mock.apply.side_effect = lambda x: x
@@ -42,3 +42,19 @@ def test_1_2_1_architecture(mocker):
     )
 
     assert net.query([1]) == [2]
+
+
+def test_1_2_1_architecture_offsets(mocker):
+    weight_initializer_mock = mocker.Mock(WeightInitializer)
+    weight_initializer_mock.init.side_effect = lambda input_size, output_size: (np.ones((output_size, input_size)), np.ones(output_size))
+
+    activation_function_mock = mocker.Mock(ActivationFunction)
+    activation_function_mock.apply.side_effect = lambda x: x
+
+    net = NeuralNetwork(
+        neurons_per_layer=[1, 2, 1],
+        weight_initializer=weight_initializer_mock,
+        activation_function=activation_function_mock
+    )
+
+    assert net.query([1]) == [5]

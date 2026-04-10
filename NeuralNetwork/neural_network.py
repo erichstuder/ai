@@ -11,17 +11,22 @@ class NeuralNetwork:
         self.neurons_per_layer = neurons_per_layer
 
         self.layer_weights = []
+        self.layer_offsets = []
         for i in range(len(neurons_per_layer) - 1):
             input_size = neurons_per_layer[i]
             output_size = neurons_per_layer[i+1]
-            self.layer_weights.append(weight_initializer.init(input_size, output_size))
+            weights, offsets = weight_initializer.init(input_size, output_size)
+            self.layer_weights.append(weights)
+            self.layer_offsets.append(offsets)
         
         self.activation_function = activation_function
     
     def query(self, inputs):
         outputs = np.array(inputs)
-        for weights in self.layer_weights:
-            outputs = self.activation_function.apply(np.dot(weights, outputs))
+        for n in range(len(self.layer_weights)):
+            weights = self.layer_weights[n]
+            offset = np.array(self.layer_offsets[n]).reshape(-1, 1)
+            outputs = self.activation_function.apply(np.dot(weights, outputs) + offset)
         return outputs
     
     def pretty_print_weights(self):
