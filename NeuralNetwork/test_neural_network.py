@@ -30,7 +30,7 @@ def test_one_neuron():
 
 def test_1_2_1_architecture_weights(mocker):
     weight_initializer_mock = mocker.Mock(WeightInitializer)
-    weight_initializer_mock.init.side_effect = lambda input_size, output_size: (np.ones((output_size, input_size)), (np.zeros(output_size)))
+    weight_initializer_mock.init.side_effect = lambda input_size, output_size: (np.ones((output_size, input_size)), np.zeros(output_size))
 
     activation_function_mock = mocker.Mock(ActivationFunction)
     activation_function_mock.apply.side_effect = lambda x: x
@@ -41,7 +41,7 @@ def test_1_2_1_architecture_weights(mocker):
         activation_function=activation_function_mock
     )
 
-    assert net.query([1]) == [2]
+    assert net.query(1) == [2]
 
 
 def test_1_2_1_architecture_offsets(mocker):
@@ -57,4 +57,4 @@ def test_1_2_1_architecture_offsets(mocker):
         activation_function=activation_function_mock
     )
 
-    assert net.query([1]) == [5]
+    assert net.query(1) == [5]
