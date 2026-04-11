@@ -3,6 +3,5 @@ import numpy as np
 
 
 class StdLogisticFunction(ActivationFunction):
-    def apply(self, x):
-        x = np.array(x)
+    def _activate(self, x):
         return 1 / (1 + np.exp(-x))

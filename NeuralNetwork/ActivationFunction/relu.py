@@ -3,6 +3,5 @@ import numpy as np
 
 
 class ReLU(ActivationFunction):
-    def apply(self, x):
-        x = np.array(x)
+    def _activate(self, x):
         return np.maximum(0, x)
