@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 from project_management import Executor
 
 if __name__ == "__main__":
@@ -21,10 +22,10 @@ if __name__ == "__main__":
     if ex.arguments.test:
         commands = 'pytest'
     elif ex.arguments.test_notebook:
-        commands = 'jupyter nbconvert --to notebook --execute 1-1.ipynb --output-dir /tmp &&' \
-                   'jupyter nbconvert --to notebook --execute 1-2-1.ipynb --output-dir /tmp &&' \
-                   'jupyter nbconvert --to notebook --execute curve_interpolation.ipynb --output-dir /tmp &&' \
-                   'jupyter nbconvert --to notebook --execute numpy_tryout.ipynb --output-dir /tmp'
+        commands = ''
+        for filename in os.listdir("notebooks"):
+            commands += f'jupyter nbconvert --to notebook --execute notebooks/{filename} --output-dir /tmp && '
+        commands = commands[:-4] # remove the last ' && '
     else:
         commands = None
 
